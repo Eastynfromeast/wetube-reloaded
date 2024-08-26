@@ -33,3 +33,20 @@
 
 - npm으로 설치한 모든 패키지가 저장될 곳
 - npm이 자동으로 만들어 준다
+
+## 2.2 Understanding Dependencies
+
+### `npm install`
+
+- npm은 굉장히 똑똑해서 package.json의 dependencies를 보고 필요한 모듈들을 알아서 설치함
+- node_modules은 무거우니까 깃에 올릴 필요 X, package.json만 올리면 원하는 걸 설치 가능
+  : 모든 정보는 package.json에 있으니까
+
+### package-lock.json
+
+- basically locked
+- 다른 환경에서도 package-lock.json이 있다면 완벽하게 똑같은 버전의 dependencies들을 다운 받을 것!
+
+### dependencies
+
+- 프로젝트를 구동시키는데 필요한 모듈들!
