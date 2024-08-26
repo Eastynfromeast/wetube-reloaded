@@ -50,3 +50,24 @@
 ### dependencies
 
 - 프로젝트를 구동시키는데 필요한 모듈들!
+
+## 2.3 The Tower of Babel
+
+### Babel is a JavaScript complier
+
+- Bable은 우리가 작성한 최신 자바스크립트를 nodeJS가 이해할 수 있도록 컴파일 하기 위해 사용
+
+### devDependencies
+
+- devDependencies ? 개발자에게 필요한 dependencies
+
+- `npm install --save-dev @babel/core`
+- package.json은 그냥 텍스트 파일이라 옮겨주고 싶으면 잘라서 붙여넣거나 하면 됨
+
+- presets : 최신 JS구문을 사용하도록 해줌
+
+  ```
+  {
+    "presets": ["@babel/preset-env"]
+  }
+  ```

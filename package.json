@@ -17,5 +17,9 @@
 	"homepage": "https://github.com/Eastynfromeast/wetube-reloaded.git/#readme",
 	"dependencies": {
 		"express": "^4.19.2"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.25.2",
+		"@babel/preset-env": "^7.25.4"
 	}
 }
