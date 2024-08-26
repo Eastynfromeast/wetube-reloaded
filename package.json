@@ -1,0 +1,16 @@
+{
+	"name": "wetube-reloaded",
+	"version": "1.0.0",
+	"description": "getting to know about nodeJS",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Eastynfromeast/wetube-reloaded.git"
+	},
+	"author": "nulnu",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Eastynfromeast/wetube-reloaded.git/issues"
+	},
+	"homepage": "https://github.com/Eastynfromeast/wetube-reloaded.git/#readme"
+}
