@@ -71,3 +71,20 @@
     "presets": ["@babel/preset-env"]
   }
   ```
+
+## 2.4 Nodemon
+
+### Babel Set-up 명령어 모음
+
+```
+npm install @babel/core @babel/node --save-dev
+npm i nodemon --save-dev
+```
+
+- Nodemon을 사용하면 서버가 죽지 않고? 코드가 변경될 때마다 재실행됨
+
+```
+	"scripts": {
+		"dev": "nodemon --exec babel-node index"
+	},
+```
