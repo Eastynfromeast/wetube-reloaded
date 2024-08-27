@@ -18,5 +18,10 @@ app.listen(4000, ()=>{console.log("Server listening on port 4000")});
 how to make server get request
 
 - Http Method
+
   - http ? one way of communicating with server
   - GET : "Go get me the page", said the browser.
+
+- Requests & response
+  - request : user is asking or you are doing something
+  - response
