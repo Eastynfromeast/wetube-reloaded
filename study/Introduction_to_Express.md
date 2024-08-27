@@ -25,3 +25,20 @@ how to make server get request
 - Requests & response
   - request : user is asking or you are doing something
   - response
+
+## 3.3 Responses
+
+- `addEventListner` has handler and handler has `(event)`
+
+```
+b.addEventListener("click", (event)=>{
+  // write something
+})
+```
+
+- route handler of express has `request` object and `response` object
+  ```
+  const handleHome = (req, res) => {
+    return res.end(); // we just kill the endless request
+  };
+  ```
