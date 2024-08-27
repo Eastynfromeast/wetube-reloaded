@@ -1,12 +1,12 @@
 # 1. Introduction
 
-## What is NodeJS
+## 1.3 What is NodeJS
 
 - NodeJS is a JavaScript outside browser
   - Ryan Dahl seperated JavaScript from browser and created NodeJS
 - shortly, JavaScript Runtime
 
-## What is NPM
+## 1.4 What is NPM
 
 - npm is a package manager for the JavaScript programming language.
 - npm and nodeJS need each other
