@@ -56,6 +56,8 @@ b.addEventListener("click", (event)=>{
 - all middlewares are handlers and all handlers are middlewares
 - all controllers(controller of MVC model) can be middleware
 
+- every controller has three parameters : req, res, next
+
 ```
 const gossipMiddleware = (req, res, next) => {
 	console.log("I am in the middle!");
@@ -67,4 +69,26 @@ const handleHome = (req, res) => {
 
 // two handlers, and first one is middleware
 app.get("/", gossipMiddleware, handleHome);
+```
+
+- `app.use()` : work as global middleware, that works everywhere, every routes!
+
+  - `app.use()`가 `app.get()`보다 먼저 위치해야함!
+    ```
+    app.use(gossipMiddleware);
+    app.get("/", handleHome);
+    ```
+
+- middleware becomes controller when the user tries to access to the "/protected"
+- middleware needs to call the `next()` to continue the connection
+
+```
+const privateMiddleware = (req, res, next) => {
+	const url = req.url;
+	if (url === "/protected") {
+		return res.send("<h1>Not Allowed</h1>");
+	}
+	console.log("Allowed, you may continue");
+	next();
+};
 ```
