@@ -42,3 +42,29 @@ b.addEventListener("click", (event)=>{
     return res.end(); // we just kill the endless request
   };
   ```
+
+## 3.4 Recap
+
+- "Browser" requests something
+
+## 3.5-6 Middlwares
+
+### middleware
+
+- software in the middle
+- between the request and the response
+- all middlewares are handlers and all handlers are middlewares
+- all controllers(controller of MVC model) can be middleware
+
+```
+const gossipMiddleware = (req, res, next) => {
+	console.log("I am in the middle!");
+	next();
+};
+const handleHome = (req, res) => {
+	return res.send("<h1>Home</h1>");
+};
+
+// two handlers, and first one is middleware
+app.get("/", gossipMiddleware, handleHome);
+```
