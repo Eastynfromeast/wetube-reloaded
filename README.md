@@ -2,7 +2,7 @@
 
 - organizing urls by routers
 
-- Global routers
+- Global routers : /에서 바로 갈 수 있는 routes
 
   - `/` : Home
   - `/join` : Join
