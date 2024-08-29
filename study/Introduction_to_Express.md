@@ -92,3 +92,11 @@ const privateMiddleware = (req, res, next) => {
 	next();
 };
 ```
+
+## 3.11 External Middlewares
+
+### morgan
+
+- HTTP request logger middleware for node.js
+- morgan is more sophisticated
+- we are gonna use many many different middlewares!
