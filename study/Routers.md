@@ -24,3 +24,19 @@ app.use("/users", userRouter);
 ```
 
 ## 4.2 Cleaning the code
+
+- 일단 코드를 짜고 그 다음에 코드를 깔끔하게 정리하자!
+- Divide and Conquer
+
+- Every file is a module and every file is a bubble in nodeJS
+
+  - everything in a file is completely isolated until it is exported
+
+  ```
+  // /src/routers/globalRouter.js
+  export default globalRouter;
+
+  // /src/server.js
+  // import 할 때 이름 변경 가능
+  import globalRouter from "./routers/globalRouter";
+  ```
