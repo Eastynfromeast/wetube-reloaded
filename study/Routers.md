@@ -49,3 +49,5 @@ app.use("/users", userRouter);
 - globalRouter is for beautiful urls
 
 - `export const` 로 export 됐을 경우에는 이름을 그대로 써줘야
+
+## 4.6 Planning Routes
