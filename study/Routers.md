@@ -37,6 +37,15 @@ app.use("/users", userRouter);
   export default globalRouter;
 
   // /src/server.js
-  // import 할 때 이름 변경 가능
+  // import 할 때 이름 변경 가능 왜냐? default 값을 export 했으니까
   import globalRouter from "./routers/globalRouter";
   ```
+
+## 4.3 Exports
+
+- router is just a beginning of url
+
+- writing controller codes with router is nonsense => create `/src/controllers`
+- globalRouter is for beautiful urls
+
+- `export const` 로 export 됐을 경우에는 이름을 그대로 써줘야

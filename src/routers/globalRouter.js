@@ -1,10 +1,9 @@
 import express from "express";
-// 모두 독립된 모듈이기 때문에 모든 router 파일에 express를 import 해주어야 함
+import { trending } from "../controllers/videoController";
+import { join } from "../controllers/userController";
 
 const globalRouter = express.Router();
 
-const handleHome = (req, res) => res.send("Home");
-
-globalRouter.get("/", handleHome);
-
+globalRouter.get("/", trending);
+globalRouter.get("/join", join);
 export default globalRouter;
