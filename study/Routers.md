@@ -51,3 +51,16 @@ app.use("/users", userRouter);
 - `export const` 로 export 됐을 경우에는 이름을 그대로 써줘야
 
 ## 4.6 Planning Routes
+
+## 4.7-8 URL Parameters
+
+- parameter : url 안에 변수를 가지도록 해줌
+
+- upload가 :id보다 위에 있는 이유?
+
+  -
+
+  ```
+  videoRouter.get("/upload", upload);
+  videoRouter.get("/:id", see);
+  ```
