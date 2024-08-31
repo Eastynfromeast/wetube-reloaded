@@ -58,9 +58,13 @@ app.use("/users", userRouter);
 
 - upload가 :id보다 위에 있는 이유?
 
-  -
+  - 그렇게 하지 않으면 upload를 id로 인식
 
   ```
   videoRouter.get("/upload", upload);
   videoRouter.get("/:id", see);
   ```
+
+- app.router
+
+- regular expression 정규표현식
