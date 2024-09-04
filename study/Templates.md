@@ -113,3 +113,14 @@
   // videoController.js
   export const trending = (req, res) => res.render("home", { pageTitle: "Home" });
   ```
+
+## 5.6 MVP Styles
+
+[MVP.css](https://andybrewer.github.io/mvp/)
+
+- When are we gonna do the CSS? very very very later!
+- use MVP.css for a temporary solution not to make the most ugly HTML
+  ```
+  // add this link inside header in the base layout file
+    link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+  ```
