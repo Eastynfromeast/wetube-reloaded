@@ -28,7 +28,7 @@ let videos = [
 export const trending = (req, res) => {
 	res.render("home", { pageTitle: "Home", videos });
 };
-export const see = (req, res) => {
+export const watch = (req, res) => {
 	const { id } = req.params;
 	const video = videos[id];
 	res.render("watch", { pageTitle: `Watch Video ${video.title}`, video });
