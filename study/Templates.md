@@ -35,10 +35,35 @@
 `Error: Failed to lookup view "home" in views directory "/Users/dongyeonsuh/Documents/study/wetube-reloaded/views"`
 
 - current workin directory? Node.js가 실행되는 곳 (where starts Node)
+
   - Node.js가 어디에서부터 시작되는가?
     - package.json <- 얘는 어디에 있지? /Users/dongyeonsuh/Documents/study/wetube-reloaded
       - src 안에 있지 않다!
+
 - 해결 방법 : server.js 에 한 줄 추가!
   ```
   app.set("views", process.cwd() + "/src/views");
+  ```
+
+## 5.2 Partials
+
+- The best thing about PUG is that we don't need to repeat ourselves
+- Pug is just a JavaScript
+
+- How to write JavaScript inline syntax in Pug?
+
+  - JS code will be converted into normal text before the user will see it === RENDERING
+
+  ```
+  // #{} 안에 써주면 OK
+  #{new Date().getFullYear()}
+  ```
+
+- every file should be named as lowercase
+
+### Partials
+
+- Includes allow you to insert the contents of one Pug file into another.
+  ```
+  include partials/footer.pug
   ```
