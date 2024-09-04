@@ -74,7 +74,7 @@
 
 [Pug supports template inheritance. Template inheritance works via the block and extends keywords.](https://pugjs.org/language/inheritance.html)
 
-- Block is basically place that we can put thing inside
+- Block is basically **place** that we can put thing inside
 
   - layout파일에 block을 만드는 것은 내용을 채워넣을 공간을 마련하는 것
 
@@ -96,4 +96,20 @@
 
   block content
     h1 Edit Video
+  ```
+
+## 5.4 Variables to Templates
+
+- `extends` allow us to have base of HTML with some certain parts that we can modify
+
+- we have send "Variables"
+
+  - who is rendering the template? **Controller**
+
+  ```
+  // layout.pug
+    title #{pageTitle} | Wetube
+
+  // videoController.js
+  export const trending = (req, res) => res.render("home", { pageTitle: "Home" });
   ```
