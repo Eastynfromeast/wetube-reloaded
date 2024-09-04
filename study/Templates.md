@@ -124,3 +124,21 @@
   // add this link inside header in the base layout file
     link(rel="stylesheet" href="https://unpkg.com/mvp.css")
   ```
+
+## 5.7 Conditionals
+
+- text가 아니라 variable로 인식하게 하려면? (변수를 단독으로 사용할 때)
+
+```
+ h1=pageTitle
+```
+
+- Pug에서 if/else 조건문 쓰기
+  ```
+   if fakeUser.loggedIn
+      li
+        a(href="/login") Log out
+  else
+    li
+      a(href="/login") Login
+  ```
