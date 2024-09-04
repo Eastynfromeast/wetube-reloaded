@@ -67,3 +67,33 @@
   ```
   include partials/footer.pug
   ```
+
+## 5.3 Extending Templates
+
+### Template Inheritance
+
+[Pug supports template inheritance. Template inheritance works via the block and extends keywords.](https://pugjs.org/language/inheritance.html)
+
+- Block is basically place that we can put thing inside
+
+  - layout파일에 block을 만드는 것은 내용을 채워넣을 공간을 마련하는 것
+
+  ```
+  // layout.pug
+  doctype html
+  html(lang="ko")
+    head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      title Wetube
+    body
+      block content
+    include partials/footer.pug
+
+
+  // edit.pug
+  extends layout.pug
+
+  block content
+    h1 Edit Video
+  ```
