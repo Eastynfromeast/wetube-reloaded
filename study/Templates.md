@@ -142,3 +142,14 @@
     li
       a(href="/login") Login
   ```
+
+## 5.8 Iteration
+
+- How to use iteration in Pug
+  ```
+    ul
+      each video in videos
+        li=video
+      else
+        li Sorry nothing found
+  ```
