@@ -17,3 +17,7 @@
   ```
 
 - absoulte vs relative URL : start with `/` ? abasolute : relative
+
+## 6.2-3 Edit Video
+
+- difference between GET and POST
