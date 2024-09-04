@@ -153,3 +153,25 @@
       else
         li Sorry nothing found
   ```
+
+## 5.9 Mixins
+
+- Mixin? A partials(pre-made HTML block) that receives data
+
+```
+// video.pug
+mixin video(info)
+  div
+    h4=info.title
+    ul
+      li #{info.rating}/5
+      li #{info.comments} comments
+      li Posted #{info.createdAt}
+      li #{info.views} views
+
+// home.pug
+include mixins/video
+
+each videoItem in videos
+    +video(videoItem)
+```
