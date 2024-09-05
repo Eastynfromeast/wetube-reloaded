@@ -22,7 +22,23 @@
 
 - action of form : where are we going to send the data? url your server needs to have
 
-### GET and POST
+### GET and POST method
 
+- method ? form과 back end 사이의 정보 전송 방식
 - GET : default method, using for search
+  - form에 있는 정보가 url에 들어감
 - POST : when changing the data of database
+
+  - Are you going to do something with data? Yes? => POST
+
+- shortcut!
+
+  ```
+  videoRouter.route("/:id(\\d+)/edit").get(getEdit).post(postEdit);
+  ```
+
+- `express.urlencoded`
+  - express app이 form value를 이해하고 자바스크립트 형식으로 변형시켜줌
+  ```
+  app.use(express.urlencoded({ extended: true }));
+  ```
