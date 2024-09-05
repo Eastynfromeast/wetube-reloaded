@@ -20,4 +20,9 @@
 
 ## 6.2-3 Edit Video
 
-- difference between GET and POST
+- action of form : where are we going to send the data? url your server needs to have
+
+### GET and POST
+
+- GET : default method, using for search
+- POST : when changing the data of database
