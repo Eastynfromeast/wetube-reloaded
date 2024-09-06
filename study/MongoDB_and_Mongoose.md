@@ -66,3 +66,49 @@
 
   brew services start mongodb-community@7.0
   ```
+
+## 6.8 Connecting to Mongo
+
+### Mongoose
+
+- Mongoose is our bridge from nodeJS to MongoDB
+
+- **MongoDB Shell Command**
+
+  ```
+  // Check whether our MongoDB is working well
+  mongod
+
+  // mongodb 실행 -> mongo shell 진입
+  mongosh
+
+  //mongo shell 끝내기
+  exit
+  ```
+
+- Install Mongoose
+
+  ```
+  npm install mongoose
+  ```
+
+- inside `src/db.js`
+
+  - you have to import this `db` on the top of `server.js` -> `import "./db";`
+
+  ```
+  import mongoose from "mongoose";
+
+  mongoose.connect("mongodb://127.0.0.1:27017/wetube");
+
+  const db = mongoose.connection;
+
+  const handleOpen = () => console.log("Connected to DB 💚");
+  const handleError = error => console.log("DB error", error);
+
+  // on happens many times
+  db.on("error", handleError);
+
+  //once happens only once
+  db.once("open", handleOpen);
+  ```
