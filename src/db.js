@@ -6,7 +6,6 @@ const db = mongoose.connection;
 
 const handleOpen = () => console.log("Connected to DB 💚");
 const handleError = error => console.log("DB error", error);
-// on happens many times
+
 db.on("error", handleError);
-//once happens only once
 db.once("open", handleOpen);

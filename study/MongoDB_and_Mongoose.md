@@ -112,3 +112,15 @@
   //once happens only once
   db.once("open", handleOpen);
   ```
+
+## 6.9 CRUD Introduction
+
+- CRUD
+
+  - Create
+  - Read
+  - Update
+  - Delete
+
+- What is model?
+  - we need to tell Mongoose how does the data look like => Model
