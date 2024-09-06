@@ -39,6 +39,7 @@
 
 - `express.urlencoded`
   - express app이 form value를 이해하고 자바스크립트 형식으로 변형시켜줌
+  - router보다 위에 위치해야 함!
   ```
   app.use(express.urlencoded({ extended: true }));
   ```
