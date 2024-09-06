@@ -45,3 +45,24 @@
   ```
 
 ## 6.5-6 More Practice
+
+## 6.7 Introduction to MongoDB
+
+### MongoDB
+
+- MongoDB is a general purpose, **document-based**, distributed database built
+
+  - pretty cool with start with
+  - document-based ? thinks in **"objects"**, unlike usual DBs which is based in SQL or sth
+  - use db with JSON files?
+
+- Installation of MongoDB
+
+  - [MongoDB official docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/#std-label-osx-prereq)
+
+  ```
+  brew tap mongodb/brew
+  brew install mongodb-community@7.0
+
+  brew services start mongodb-community@7.0
+  ```
