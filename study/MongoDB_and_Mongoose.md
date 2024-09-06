@@ -123,4 +123,25 @@
   - Delete
 
 - What is model?
+
   - we need to tell Mongoose how does the data look like => Model
+
+- Schema : the shape of model
+
+- How to create schema and model
+
+  ```
+  const videoSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  createdAt: Date,
+  hashtags: [{ type: String }],
+    meta: {
+      views: Number,
+      rating: Number,
+    },
+  });
+
+  const videoModel = mongoose.model("Video", videoSchema);
+  export default videoModel;
+  ```
