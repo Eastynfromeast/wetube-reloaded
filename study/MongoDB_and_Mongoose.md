@@ -191,3 +191,23 @@
 - `video.save();` this returns promise
 - MongoDB의 collection이름이 Video가 아닌 videos인 이유
   : Mongoose는 자동으로 모델을 찾고, 해당 모델의 이름을 따서 소문자+뒤에 s(복수형)을 붙여 컬렉션을 생성합니다.
+
+## 6.17 Exceptions and Validation
+
+- createdAt의 default 값을 Date.now 로 설정해주는 이유?
+
+  - Date.now()로 쓰면 바로 실행될 것 -> 그렇게 하지 않기 위한 mongoose만의 규칙?
+
+  ```
+  const videoSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    createdAt: { type: Date, required: true, default: Date.now },
+    hashtags: [{ type: String }],
+    meta: {
+      views: Number,
+      rating: Number,
+    },
+  });
+
+  ```
