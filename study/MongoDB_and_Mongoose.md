@@ -211,3 +211,7 @@
   });
 
   ```
+
+## 6.18 More Schema
+
+- minLength, maxLength : we should make a limit on both side of HTML form and data schema when we are using minLength or maxLength

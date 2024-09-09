@@ -4,7 +4,7 @@ block content
   if errorMessage 
     p=errorMessage
   form(method="POST")
-    input(name="title", placeholder="Title", type="text", required)
-    input(name="description", placeholder="Description", type="text", required)
+    input(name="title", placeholder="Title", type="text", required, maxLength=80)
+    input(name="description", placeholder="Description", type="text", required, minLength=20)
     input(name="hashtags", placeholder="Hashtags, seperated by comma", type="text", required)
     button(type="submit") Upload Video
