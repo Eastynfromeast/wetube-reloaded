@@ -159,3 +159,21 @@
 ## 6.12 Our First Query part Two
 
 - database는 js 밖에 있기 때문에 코드를 먼저 쓰더라도 비동기로 늦게 출력된다
+
+## 6.13 Async Await
+
+- Promise ? The newest version of callback
+
+  - `await` : javascript is waiting something
+  - `await` should be used inside `async` function
+
+  - try and catch
+    - catch catched errors
+    ```
+    try {
+      const videos = await Video.find({});
+      return res.render("home", { pageTitle: "Home", videos });
+    } catch {
+      return res.render("server-error");
+    }
+    ```
