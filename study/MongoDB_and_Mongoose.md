@@ -215,3 +215,12 @@
 ## 6.18 More Schema
 
 - minLength, maxLength : we should make a limit on both side of HTML form and data schema when we are using minLength or maxLength
+
+## 6.19 Video Detail
+
+- `ObjectId` of MongoDB : A 24 character hexadecimal string value for the new ObjectId.
+  - regExp : `videoRouter.get("/:id([0-9a-f]{24})", watch);`
+- `findById()` : Finds a single document by its \_id field. findById(id) is almost\* equivalent to findOne({ \_id: id }). If you want to query by a document's \_id, use findById() instead of findOne().
+  ```
+  const video = await Video.findById(id);
+  ```
