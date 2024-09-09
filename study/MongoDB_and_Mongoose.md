@@ -224,3 +224,5 @@
   ```
   const video = await Video.findById(id);
   ```
+
+## 6.20-22 Edit Video
