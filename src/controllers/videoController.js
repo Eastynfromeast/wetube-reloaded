@@ -1,6 +1,6 @@
 import Video from "../models/Video";
 
-/*
+/* Callback way
 console.log("start");
 Video.find({}).then(
 	if(error){

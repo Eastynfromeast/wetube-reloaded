@@ -3,7 +3,6 @@ include mixins/video
 
 
 block content
-  h2 Welcome here! You will see the trending videos :)
   each videoItem in videos  
     +video(videoItem)
   else 
