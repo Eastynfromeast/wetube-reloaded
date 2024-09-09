@@ -145,3 +145,13 @@
   const videoModel = mongoose.model("Video", videoSchema);
   export default videoModel;
   ```
+
+## 6.11 Our First Query
+
+- create `src/init.js` to seperate server.js and init.js
+
+  - `server.js` was created to deal with express and configuration of server, not importing database or models
+  - `init.js`is created to import everything needs to be start the server
+
+- How do we use our Video model?
+  - callback? way of waiting in JavaScript world

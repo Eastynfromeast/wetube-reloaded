@@ -4,7 +4,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/wetube");
 
 const db = mongoose.connection;
 
-const handleOpen = () => console.log("Connected to DB 💚");
+const handleOpen = () => console.log("Connected to Mongoose DB 💚");
 const handleError = error => console.log("DB error", error);
 
 db.on("error", handleError);
