@@ -155,3 +155,7 @@
 
 - How do we use our Video model?
   - callback? way of waiting in JavaScript world
+
+## 6.12 Our First Query part Two
+
+- database는 js 밖에 있기 때문에 코드를 먼저 쓰더라도 비동기로 늦게 출력된다
