@@ -2,5 +2,7 @@ extends templates/layout
 
 block content
   form(method="POST")
-    input(name="title", placeholder="title", type="text", required)
+    input(name="title", placeholder="Title", type="text", required)
+    input(name="description", placeholder="Description", type="text", required)
+    input(name="hashtags", placeholder="Hashtags, seperated by comma", type="text", required)
     button(type="submit") Upload Video
