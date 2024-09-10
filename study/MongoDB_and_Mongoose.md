@@ -226,3 +226,17 @@
   ```
 
 ## 6.20-22 Edit Video
+
+- `findOneAndUpdate(conditions, update, options)` : data 찾아서 업데이트 하기
+
+  ```
+    await Video.findByIdAndUpdate(id, {
+      title,
+      description,
+      hashtags: hashtags.split(",").map(word => (!word.trim().startsWith("#") ? `#${word.trim().replaceAll(" ", "_")}` : word.trim().replaceAll(" ", "_"))),
+    });
+  ```
+
+- `exists({ filter });` : return true or false
+  - check before save the data
+  - in postEdit, we don't need the video object to be gotten
