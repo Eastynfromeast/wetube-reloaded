@@ -1,4 +1,5 @@
 extends templates/layout
+include mixins/video
 
 block content
   if errorMessage 
@@ -6,3 +7,6 @@ block content
   form(method="GET")
     input(name="keyword", placeholder="Search by title", type="text", required, maxLength=80)
     button(type="submit") Search now
+  div
+    each video in videos  
+      +video(video)

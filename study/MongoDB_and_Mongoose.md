@@ -306,3 +306,9 @@
   - `sort({fieldName:"desc"})`: Sets the sort order by fieldName, descending
 
 - It is SOOOOO easy to get query in Mongoose : `const { keyword } = req.query;`
+
+- regExp
+  ```
+  /^word/g - find when it is started with "word"
+  /word$/g - find when it is ended with "word"
+  ```
