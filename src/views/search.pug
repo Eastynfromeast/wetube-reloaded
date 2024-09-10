@@ -1,0 +1,8 @@
+extends templates/layout
+
+block content
+  if errorMessage 
+    p=errorMessage
+  form(method="GET")
+    input(name="keyword", placeholder="Search by title", type="text", required, maxLength=80)
+    button(type="submit") Search now

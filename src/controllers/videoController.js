@@ -1,19 +1,8 @@
 import Video from "../models/Video";
 
-/* Callback way
-console.log("start");
-Video.find({}).then(
-	if(error){
-		return res.render("server-error");
-	}
-	return res.render("home",{pageTitle:"Home", videos});
-);
-console.log("finished");
-*/
-
 export const home = async (req, res) => {
 	try {
-		const videos = await Video.find({});
+		const videos = await Video.find({}).sort({ createdAt: "desc" });
 		return res.render("home", { pageTitle: "Home", videos });
 	} catch {
 		return res.render("server-error");
@@ -78,4 +67,14 @@ export const deleteVideo = async (req, res) => {
 	const { id } = req.params;
 	await Video.findByIdAndDelete({ _id: id });
 	return res.redirect("/");
+};
+
+export const search = async (req, res) => {
+	const { keyword } = req.query;
+	console.log("should search", keyword);
+	if (keyword) {
+		const videos = await Video.find({ title: keyword });
+		console.log(videos);
+	}
+	return res.render("search", { pageTitle: "Search" });
 };

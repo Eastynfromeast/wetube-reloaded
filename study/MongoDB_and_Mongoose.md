@@ -298,3 +298,11 @@
 ## 6.25 Delete Video
 
 - `findByIdAndDelete({ _id: id })` : delete the data by id
+
+## 6.26-27 Search
+
+- Mongoose has powerful query engine
+
+  - `sort({fieldName:"desc"})`: Sets the sort order by fieldName, descending
+
+- It is SOOOOO easy to get query in Mongoose : `const { keyword } = req.query;`
