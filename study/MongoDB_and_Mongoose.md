@@ -276,3 +276,21 @@
 
   const videoModel = mongoose.model("Video", videoSchema);
   ```
+
+## 6.24 Statics
+
+- We can build our own functions by statics
+
+  ```
+  videoSchema.static("formatHashtags", function (hashtags) {
+    return hashtags.split(",").map(word => (!word.trim().startsWith("#") ? `#${word.trim().replaceAll(" ", "_")}` : word.trim().replaceAll(" ", "_")));
+  });
+
+  // how to use
+  await Video.create({
+    title,
+    description,
+    hashtags: Video.formatHashtags(hashtags),
+  });
+
+  ```
