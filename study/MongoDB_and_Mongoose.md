@@ -294,3 +294,7 @@
   });
 
   ```
+
+## 6.25 Delete Video
+
+- `findByIdAndDelete({ _id: id })` : delete the data by id
