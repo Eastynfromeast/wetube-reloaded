@@ -240,3 +240,39 @@
 - `exists({ filter });` : return true or false
   - check before save the data
   - in postEdit, we don't need the video object to be gotten
+
+## 6.23 Middlewares
+
+- mongoose terminal directives
+
+  ```
+  시작하기
+  mongosh
+
+  db 보기
+  show db
+
+  사용할 db 선택
+  use dbName
+
+  collection 보기
+  show collections
+
+  db collections 안에 documents 보기
+  db.collectionName.find()
+
+  db collection 안의 documents 내용 모두 제거하기
+  db.collectionName.deleteMany({})
+  ```
+
+- middleware **must be created before the model is created**
+
+  ```
+  videoSchema.pre("save", async function () {
+    this.hashtags = this.hashtags[0]
+      .split(",")
+      .map(word => (!word.trim().startsWith("#") ? `#${word.trim().replaceAll(" ", "_")}` : word.trim().replaceAll(" ", "_")));
+  });
+
+  const videoModel = mongoose.model("Video", videoSchema);
+  ```

@@ -14,7 +14,6 @@ console.log("finished");
 export const home = async (req, res) => {
 	try {
 		const videos = await Video.find({});
-		console.log(videos);
 		return res.render("home", { pageTitle: "Home", videos });
 	} catch {
 		return res.render("server-error");
@@ -64,7 +63,7 @@ export const postUpload = async (req, res) => {
 		await Video.create({
 			title,
 			description,
-			hashtags: hashtags.split(",").map(word => (!word.trim().startsWith("#") ? `#${word.trim().replaceAll(" ", "_")}` : word.trim().replaceAll(" ", "_"))),
+			hashtags,
 		});
 		return res.redirect("/");
 	} catch (error) {
