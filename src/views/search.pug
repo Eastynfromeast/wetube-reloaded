@@ -10,3 +10,5 @@ block content
   div
     each video in videos  
       +video(video)
+    if videos.length === 0 && keyword !== undefined
+      p Sorry, No such video found

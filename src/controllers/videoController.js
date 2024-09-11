@@ -80,5 +80,5 @@ export const search = async (req, res) => {
 			},
 		});
 	}
-	return res.render("search", { pageTitle: "Search", videos });
+	return res.render("search", { pageTitle: "Search", videos, keyword });
 };

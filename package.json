@@ -7,7 +7,7 @@
 		"url": "https://github.com/Eastynfromeast/wetube-reloaded.git"
 	},
 	"scripts": {
-		"dev": "nodemon --exec babel-node src/init.js"
+		"start": "nodemon --exec babel-node src/init.js"
 	},
 	"author": "nulnu",
 	"license": "MIT",
