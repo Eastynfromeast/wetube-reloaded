@@ -42,3 +42,5 @@
   ```
   	return res.status(400).render("join", { pageTitle, errorMessage: "This username/email is already taken" });
   ```
+
+## 7.5-6 Login
