@@ -29,3 +29,16 @@
 
 - [`$or`](https://www.mongodb.com/docs/manual/reference/operator/query/or/) : The $or operator performs a logical OR operation on an array of one or more <expressions> and selects the documents that satisfy at least one of the <expressions>.
   - `const hasUser = await User.exists({ $or: [{ username }, { email }] });`
+
+## 7.4 Status Code
+
+- We need to send right status code to the browser to keeps the history of the only websites which the user visited safely without errors
+
+  - 200 : Ok
+  - 400 : Bad Request
+    - with 4xx errors, the browser will not keep the history of the website
+
+- How to send status on `render()` : just write `status()` before `render()`
+  ```
+  	return res.status(400).render("join", { pageTitle, errorMessage: "This username/email is already taken" });
+  ```
