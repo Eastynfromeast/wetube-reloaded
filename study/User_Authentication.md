@@ -21,3 +21,11 @@
         // Store hash in your password DB.
     });
   ```
+
+## 7.3 Form Validation
+
+- We need to validate the form before post the data
+- DB error is the last line to defense
+
+- [`$or`](https://www.mongodb.com/docs/manual/reference/operator/query/or/) : The $or operator performs a logical OR operation on an array of one or more <expressions> and selects the documents that satisfy at least one of the <expressions>.
+  - `const hasUser = await User.exists({ $or: [{ username }, { email }] });`
