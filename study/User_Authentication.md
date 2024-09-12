@@ -44,3 +44,17 @@
   ```
 
 ## 7.5-6 Login
+
+- How to compare password from the login form and the password from DB
+
+  ```
+  // Load hash from your password DB.
+  bcrypt.compare(myPlaintextPassword, hash).then(function(result) {
+      // result == true
+  });
+  ```
+
+- How to update data in MongoDB via terminal
+  ```
+   db.users.updateOne({email:"nulnu@gmail.com"},{$set:{"username":"nulnu"}})
+  ```
