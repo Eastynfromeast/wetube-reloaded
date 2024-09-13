@@ -58,3 +58,23 @@
   ```
    db.users.updateOne({email:"nulnu@gmail.com"},{$set:{"username":"nulnu"}})
   ```
+
+## 7.7-8 Sessions and Cookies
+
+- Backend can do nothing after the user logged in
+  - Happens once and dies === stateless
+  - When user logged in, we will give something to the user to let the user send us the piece to keep the connection with the server
+
+### express-session
+
+- Allow us to create a session middleware with express.
+- Intialize express-session "before" router
+  ```
+  app.use(
+    session({
+      secret: "wetube-reloaded",
+      resave: true,
+      saveUninitialized: true,
+    })
+  );
+  ```
