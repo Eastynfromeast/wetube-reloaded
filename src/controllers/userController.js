@@ -10,11 +10,10 @@ export const postJoin = async (req, res) => {
 	if (password !== confirmPassword) {
 		return res.status(400).render("join", { pageTitle, errorMessage: "Password confirmation does not match" });
 	}
-	const hasUser = await User.exists({ $or: [{ username }, { email }] });
-	if (hasUser) {
+	const user = await User.exists({ $or: [{ username }, { email }] });
+	if (user) {
 		return res.status(400).render("join", { pageTitle, errorMessage: "This username/email is already taken" });
 	}
-
 	try {
 		await User.create({
 			name,
@@ -23,6 +22,7 @@ export const postJoin = async (req, res) => {
 			password,
 			location,
 		});
+
 		return res.redirect("/login");
 	} catch (error) {
 		return res.status(400).render("join", {
@@ -50,7 +50,8 @@ export const postLogin = async (req, res) => {
 	if (!ok) {
 		return res.status(400).render("login", { pageTitle, errorMessage: "Wrong password" });
 	}
-	console.log(`LOG USER ${user.username} IN! COMING SOON`);
+	req.session.loggedIn = true;
+	req.session.user = user;
 	return res.redirect("/");
 };
 export const logout = (req, res) => res.send("Logout");

@@ -83,9 +83,18 @@
 - Everytime when the user visits the website, the browser gives an ID on every request
 
 - How express-session creates session and works
+
   1. A user enters the page
   2. express-session creates a session id automatically
   3. express-session gives the session id to the browser
   4. The brower saves the session id on their cookies
   5. Express will save the session id on session db
   6. Everytime the brower sends requests to any URL inside the domain, the browser will send the session id with the request
+
+- How to use express-session
+  ```
+  // postLogin fn
+  ...
+  req.session.loggedIn = true;
+  req.session.user = user;
+  ```
