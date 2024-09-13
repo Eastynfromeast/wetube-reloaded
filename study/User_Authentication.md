@@ -92,9 +92,26 @@
   6. Everytime the brower sends requests to any URL inside the domain, the browser will send the session id with the request
 
 - How to use express-session
+
   ```
   // postLogin fn
   ...
   req.session.loggedIn = true;
   req.session.user = user;
   ```
+
+- How to send the session to pug templates?
+
+  - pug can access to res.locals
+  - you can send variables to your templates globally **using local object**
+  - by creating Middleware
+
+    ```
+    export const localsMiddlware = (req, res, next) => {
+      res.locals.siteName = "Nultube";
+      res.locals.loggedIn = Boolean(req.session.loggedIn);
+      console.log(res.locals);
+      next();
+    };
+
+    ```
