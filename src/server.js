@@ -16,11 +16,24 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
 	session({
-		secret: "wetube-reloaded",
+		secret: "Wetube reloaded",
 		resave: true,
 		saveUninitialized: true,
 	})
 );
+
+app.use((req, res, next) => {
+	req.sessionStore.all((error, sessions) => {
+		console.log(sessions);
+		next();
+	});
+});
+
+app.get("/add-one", (req, res, next) => {
+	req.session.potato += 1;
+	return res.send(`${req.session.id}\n${req.session.potato}`);
+});
+
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
