@@ -45,3 +45,12 @@ userRouter
 - **NEVER EVER SAVE A FILE ON A DATABASE.INSTEAD WE SAVE THE LOCATION OF THE FILE!!!**
 
 - We have to let express know that there is upload directory!
+
+## 8.8 Static Files and Recap
+
+- Static file serving == expose a whole folder to the browser
+- express.static(root, [options])
+  - Express에 내장된 미들웨어 기능입니다. 정적 파일을 제공하며 serve-static을 기반으로 합니다. root 인수는 static asset을 제공할 root 디렉토리를 지정합니다. 이 함수는 req.url을 제공된 root 디렉토리와 결합하여 제공할 파일을 결정합니다.
+  ```
+  app.use("/uploads", express.static("uploads"));
+  ```
