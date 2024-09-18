@@ -18,8 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
 	session({
 		secret: "Wetube reloaded",
-		resave: true,
-		saveUninitialized: true,
+		resave: false,
+		saveUninitialized: false,
 	})
 );
 

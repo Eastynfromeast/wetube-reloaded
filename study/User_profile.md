@@ -41,3 +41,7 @@ userRouter
   size: 94494
 }
 ```
+
+- **NEVER EVER SAVE A FILE ON A DATABASE.INSTEAD WE SAVE THE LOCATION OF THE FILE!!!**
+
+- We have to let express know that there is upload directory!
