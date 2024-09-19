@@ -11,4 +11,44 @@
 
 - webpack은 모던 JavaScript 애플리케이션을 위한 정적 모듈 번들러 입니다.
 - webpack이 애플리케이션을 처리할 때, 내부적으로는 프로젝트에 필요한 모든 모듈을 매핑하고 하나 이상의 번들을 생성하는 디펜던시 그래프를 만듭니다.
-- We don't have to configure webpack most of the time, but we need to know the standard!
+- We don't have to configure webpack most of the time, but we need to know the industry standard!
+
+## 9.1-2 Webpack Configuration
+
+### What webpack can do?
+
+- webpack can process almost everything
+  - can compress .jpg file
+  - turns .js file into old .js file
+
+### Install webpack
+
+- Install webpack and webpack cli
+
+```
+npm i webpack webpack-cli -D
+```
+
+- `webpack.config.js`
+  - this file can only understand very old JS
+  - entry : the files that we want to process, our sexy JS === the source code
+  - output : where the transformed code goes
+    - The output directory as **absolute path** (required).
+  ```
+  module.exports = {
+    entry: "./src/client/js/main.js",
+    output: {
+      filename: "main.js",
+      path: "./assets/js",
+    },
+  };
+  ```
+
+### Quiz!
+
+- We use Webpack to transform our frontend code
+- Wepback can process CSS files
+- entry? The files that we are going to transform
+- output? The place where the transformed files should go
+- rule in Webpack? the definition of the transformations to apply to our files
+- loader? the package that will transform our files
