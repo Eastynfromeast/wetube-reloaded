@@ -67,7 +67,19 @@ npm i webpack webpack-cli -D
     ```
 
 - mode : by default, mode is set up as production
+
   - the codes transformed in "development" mode is much more readable then "production" mode code since it is COMPRESSED LESS
+
+- Let Express know that we have a directory called "assets"
+  - static files : tell Express to please allow users to see the folder
+
+```
+// server.js
+app.use("/static", express.static("assets"));
+
+// layout.pug
+ script(src="/static/js/main.js") // this is for the browser, not for node.js
+```
 
 ### Quiz!
 
