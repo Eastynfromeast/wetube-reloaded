@@ -30,19 +30,44 @@ npm i webpack webpack-cli -D
 ```
 
 - `webpack.config.js`
+
   - this file can only understand very old JS
   - entry : the files that we want to process, our sexy JS === the source code
   - output : where the transformed code goes
     - The output directory as **absolute path** (required).
+
   ```
+  const path = require("path");
   module.exports = {
-    entry: "./src/client/js/main.js",
+   	entry: "./src/client/js/main.js",
     output: {
       filename: "main.js",
-      path: "./assets/js",
+      path: path.resolve(__dirname, "assets", "js"),
     },
   };
   ```
+
+- rules? A Rule can be separated into three parts — Conditions, Results and nested Rules.
+
+  - rules for transformation of certain files
+    ```
+    module: {
+    	rules: [
+    		{
+    			test: /\.js$/, // transform javascript files
+    			use: {
+    				loader: "babel-loader", // use babel-loader to transform the JS files
+    				options: {
+    					presets: ["@babel/preset-env"],
+    				},
+    			},
+    		},
+    	],
+    },
+    ```
+
+- mode : by default, mode is set up as production
+  - the codes transformed in "development" mode is much more readable then "production" mode code since it is COMPRESSED LESS
 
 ### Quiz!
 
@@ -50,5 +75,5 @@ npm i webpack webpack-cli -D
 - Wepback can process CSS files
 - entry? The files that we are going to transform
 - output? The place where the transformed files should go
-- rule in Webpack? the definition of the transformations to apply to our files
+- rules in Webpack? the definition of the transformations to apply to our files
 - loader? the package that will transform our files
