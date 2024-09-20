@@ -1,1 +1,3 @@
-alert("hi! from main js");
+import "../scss/styles.scss";
+
+console.log("hi! from main js");

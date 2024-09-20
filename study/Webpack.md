@@ -81,6 +81,19 @@ app.use("/static", express.static("assets"));
  script(src="/static/js/main.js") // this is for the browser, not for node.js
 ```
 
+## 9.4 SCSS Loader
+
+- SCSS : SassyCSS
+- `npm i sass sass-loader -D`
+- `npm i style-loader css-loader -D`
+- Take SCSS -> sass-loader
+  - and turn it into normal css -> css-loader
+  - and bring it to the frontend -> style-loader
+  - `use:["style-loader","css-loader", "sass-loader"],`
+  - the process starts from the end
+
+---
+
 ### Quiz!
 
 - We use Webpack to transform our frontend code
