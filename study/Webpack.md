@@ -120,7 +120,44 @@ app.use("/static", express.static("assets"));
     }
     ```
 
+## 9.6 Better Developer Experience
+
+- It's annoying to run `npm run assets` everytime there is some changes
 - how to delete assets automatically everytime I change sth
+- => use `watch`
+  ```
+  module.exports = {
+    entry: "./src/client/js/main.js",
+    mode: "development",
+    watch: true,
+    //
+  }
+  ```
+- Need to run two consoles : **BOTH NEED TO BE RUNNING AT THE SAME TIME**
+
+  - `npm run starts` one for backend
+  - `npm run assets` another to watch client files
+    - this termianl will not be finished with `watch` option
+
+- `output.clean` : clean the /dist folder before each build, so that only used files will be generated.
+
+- how to stop to restart nodemon everytime we save webpack.config.js
+
+  1. created `nodemon.json` files
+  2. add this
+
+  - ref. [nodemon github](https://github.com/remy/nodemon?tab=readme-ov-file#config-files)
+
+  ```
+  {
+    "ignore": ["webpack.config.js", "src/client/*"],
+    "exec": "babel-node src/init.js"
+  }
+
+  ```
+
+  3. change the script of nodemon in `package.json`
+     - ` "start": "nodemon",` <- from `"start" : nodemon --exec babel-node src/init.js`
 
 ---
 
