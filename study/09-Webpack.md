@@ -146,7 +146,7 @@ app.use("/static", express.static("assets"));
   1. created `nodemon.json` files
   2. add this
 
-  - ref. [nodemon github](https://github.com/remy/nodemon?tab=readme-ov-file#config-files)
+  - ref. [nodemon github](https://github.com/remy/nodemon?tab=readme-ov-file#config-file)
 
   ```
   {
@@ -161,7 +161,7 @@ app.use("/static", express.static("assets"));
 
 ---
 
-### Quiz!
+### Summary
 
 - We use Webpack to transform our frontend code
 - Wepback can process CSS files
