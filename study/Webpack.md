@@ -92,6 +92,36 @@ app.use("/static", express.static("assets"));
   - `use:["style-loader","css-loader", "sass-loader"],`
   - the process starts from the end
 
+## 9.5 MiniCssExtractPlugin
+
+- Browsers cannot understand SCSS, of course
+- MiniCssExtractPlugin
+
+  - We are not gonna using `style-loader` anymore
+  - to have a seperate CSS file, not injecting CSS codes in JS file
+  - MiniCssExtractPlugin 플러그인은 CSS 파일을 별도 파일로 추출(extract) 합니다. CSS 코드가 포함된 JS 파일 별로 CSS 파일을 생성합니다
+
+    ```
+    npm install --save-dev mini-css-extract-plugin
+
+    // webpack.config.js
+    const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+    module.exports = {
+      plugins: [new MiniCssExtractPlugin()],
+      module: {
+        rules: [
+         {
+          test: /\.scss$/,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        },
+        ],
+      },
+    }
+    ```
+
+- how to delete assets automatically everytime I change sth
+
 ---
 
 ### Quiz!
