@@ -1,10 +1,13 @@
+// Config
 @import "./config/_reset.scss";
 @import "./config/_variables.scss";
 
-//components
+// Components
 @import "./components//header.scss";
 @import "./components/footer.scss";
 @import "./components/forms.scss";
+
+// Screens
 
 // Defaults
 a {
@@ -23,4 +26,8 @@ main {
 	width: 100%;
 	margin: 0 auto;
 	margin-top: 50px;
+}
+
+video {
+	max-width: 768px;
 }
