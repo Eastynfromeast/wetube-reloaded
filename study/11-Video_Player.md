@@ -36,3 +36,5 @@
 
 - duration : A read-only double-precision floating-point value indicating the total duration of the media in seconds. If no media data is available, the returned value is NaN
 - timeupdate : Fired when the time indicated by the currentTime property has been updated.
+
+- Use a trick to format time => `new Date(seconds * 1000).toISOString().substring(14, 14 + 5);`
