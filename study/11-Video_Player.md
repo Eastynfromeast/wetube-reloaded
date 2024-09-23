@@ -38,3 +38,9 @@
 - timeupdate : Fired when the time indicated by the currentTime property has been updated.
 
 - Use a trick to format time => `new Date(seconds * 1000).toISOString().substring(14, 14 + 5);`
+
+### Fullscreen API
+
+[Mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)
+
+- [`Element.requestFullscreen()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen)
