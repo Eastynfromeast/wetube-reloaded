@@ -41,6 +41,10 @@
 
 ### Fullscreen API
 
-[Mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)
+[mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)
 
 - [`Element.requestFullscreen()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen)
+
+- How to addEventListener of `keydown`
+  - [mdn link](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event)
+  - This event needs to added on `window`

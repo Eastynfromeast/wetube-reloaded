@@ -109,3 +109,15 @@ fullScreenBtn.addEventListener("click", handleFullscreen);
 
 video.addEventListener("mousemove", handleMouseMove);
 // video.addEventListener("mouseleave", handleMouseLeave);
+window.addEventListener("keydown", event => {
+	const { key } = event;
+	if (key === "f" || key === "F") {
+		handleFullscreen();
+	}
+	if (key === "m" || key === "M") {
+		handleMuteClick();
+	}
+	if (key === "k" || key === "K") {
+		handlePlayClick();
+	}
+});
