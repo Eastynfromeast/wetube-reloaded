@@ -45,3 +45,8 @@ entry: {
 ## 13.3 Recording Video part Two
 
 - `URL.createObjectURL` : create an URL only available in the browser memory
+
+## 13.4 Downloading the File
+
+- `a.download` : Prompts the user to save the linked URL instead of navigating to it
+  - when we add `download` attribute on `<a>` then the `<a>` will save the file

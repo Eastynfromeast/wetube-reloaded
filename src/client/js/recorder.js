@@ -1,15 +1,22 @@
 const startBtn = document.getElementById("startBtn");
 const preview = document.getElementById("preview");
 
-let stream = null;
-let recorder = null;
+let stream;
+let recorder;
+let videoFile;
 
-const handleDownload = () => {};
+const handleDownload = () => {
+	const videoLink = document.createElement("a");
+	videoLink.href = videoFile;
+	videoLink.download = "videoFile.webm";
+	document.body.appendChild(videoLink);
+	videoLink.click();
+};
 
 const handleStop = () => {
 	startBtn.innerText = "Download Recording";
-	startBtn.addEventListener("click", handleStart);
 	startBtn.removeEventListener("click", handleStop);
+	startBtn.addEventListener("click", handleDownload);
 	recorder.stop();
 };
 
@@ -22,7 +29,7 @@ const handleStart = () => {
 	// console.log(recorder); recorder.state == "inactive"
 	recorder.ondataavailable = event => {
 		console.log("Get the video!", event.data);
-		const videoFile = URL.createObjectURL(event.data);
+		videoFile = URL.createObjectURL(event.data);
 		preview.srcObject = null;
 		preview.src = videoFile;
 		preview.loop = true;
