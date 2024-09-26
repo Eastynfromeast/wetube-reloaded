@@ -40,3 +40,8 @@ entry: {
   - [MediaRecorder in mdn](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder)
 
   - `MediaRecorder.stop()` : Stops recording, at which point a dataavailable event containing the final Blob of saved data is fired. No more recording occurs.
+    - `dataavailable` : The dataavailable event of the MediaRecorder interface is fired when the MediaRecorder delivers media data to your application for its use. The data is provided in a Blob object that contains the data.
+
+## 13.3 Recording Video part Two
+
+- `URL.createObjectURL` : create an URL only available in the browser memory
