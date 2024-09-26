@@ -28,3 +28,15 @@ entry: {
   - [mdn link](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)
 
 - `regeneratorRuntime` was needed to use `async/await` in babel, but we don't have to rn in 2024
+
+## 13.1 Video Preview
+
+-`HTMLMediaELement.srcObject` : The srcObject property of the HTMLMediaElement interface sets or returns the object which serves as the source of the media associated with the HTMLMediaElement.
+
+## 13.2 Recording Video
+
+- `MediaRecorder` : The MediaRecorder interface of the MediaStream Recording API provides functionality to easily record media. It is created using the MediaRecorder() constructor.
+
+  - [MediaRecorder in mdn](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder)
+
+  - `MediaRecorder.stop()` : Stops recording, at which point a dataavailable event containing the final Blob of saved data is fired. No more recording occurs.
