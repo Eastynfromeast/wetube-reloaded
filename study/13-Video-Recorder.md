@@ -50,3 +50,7 @@ entry: {
 
 - `a.download` : Prompts the user to save the linked URL instead of navigating to it
   - when we add `download` attribute on `<a>` then the `<a>` will save the file
+
+## 13.5 Recap
+
+- `mediaDevices` : Allows you to access media devices such as microphone, camera and so on.

@@ -6,11 +6,14 @@ let recorder;
 let videoFile;
 
 const handleDownload = () => {
+	const now = Date.now();
 	const videoLink = document.createElement("a");
 	videoLink.href = videoFile;
-	videoLink.download = "videoFile.webm";
+	videoLink.download = `videoFile_${now}.webm`;
 	document.body.appendChild(videoLink);
 	videoLink.click();
+	preview.loop = false;
+	preview.stop();
 };
 
 const handleStop = () => {
@@ -25,7 +28,7 @@ const handleStart = () => {
 	startBtn.removeEventListener("click", handleStart);
 	startBtn.addEventListener("click", handleStop);
 
-	recorder = new MediaRecorder(stream);
+	recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
 	// console.log(recorder); recorder.state == "inactive"
 	recorder.ondataavailable = event => {
 		console.log("Get the video!", event.data);
@@ -33,6 +36,7 @@ const handleStart = () => {
 		preview.srcObject = null;
 		preview.src = videoFile;
 		preview.loop = true;
+		preview.controls = true;
 		preview.play();
 	};
 	recorder.start();
