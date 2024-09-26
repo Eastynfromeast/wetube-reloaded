@@ -1,13 +1,15 @@
 const startBtn = document.getElementById("startBtn");
+const preview = document.getElementById("preview");
 
 const handleStart = async () => {
 	let stream = null;
 	try {
 		stream = await navigator.mediaDevices.getUserMedia({
 			audio: true,
-			video: true,
+			video: { width: 270, height: 480 },
 		});
-		console.log(stream);
+		preview.srcObject = stream;
+		preview.play();
 	} catch (error) {}
 };
 
