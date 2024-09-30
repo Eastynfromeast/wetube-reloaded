@@ -17,6 +17,8 @@
 	},
 	"homepage": "https://github.com/Eastynfromeast/wetube-reloaded.git/#readme",
 	"dependencies": {
+		"@ffmpeg/ffmpeg": "^0.12.10",
+		"@ffmpeg/util": "^0.12.1",
 		"bcrypt": "^5.1.1",
 		"express": "^4.19.2",
 		"express-session": "^1.18.0",

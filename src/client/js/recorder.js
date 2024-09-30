@@ -1,19 +1,42 @@
+import { fetchFile } from "@ffmpeg/util";
+import { FFmpeg } from "@ffmpeg/ffmpeg";
+
 const startBtn = document.getElementById("startBtn");
 const preview = document.getElementById("preview");
 
 let stream;
 let recorder;
 let videoFile;
+let fileName;
+let fileNum = 0;
 
-const handleDownload = () => {
-	const now = Date.now();
+const FILE_PREFIX = "videoFile_";
+
+const formatFileName = () => {
+	const datePart = new Date().toISOString().substring(2, 10).replaceAll("-", "");
+	fileName = FILE_PREFIX + datePart + "_" + fileNum;
+	fileNum += 1;
+	return fileName;
+};
+
+const handleDownload = async () => {
+	formatFileName();
+
+	const ffmpeg = new FFmpeg();
+	await ffmpeg.load();
+	ffmpeg.on("log", ({ type, message }) => console.log(message));
+
+	// ffmpeg 세상에 file을 만들어줌!
+	ffmpeg.writeFile(`${fileName}.webm`, await fetchFile(videoFile));
+	await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
+
 	const videoLink = document.createElement("a");
 	videoLink.href = videoFile;
-	videoLink.download = `videoFile_${now}.webm`;
+	videoLink.download = `${fileName}.webm`;
 	document.body.appendChild(videoLink);
 	videoLink.click();
 	preview.loop = false;
-	preview.stop();
+	preview.pause();
 };
 
 const handleStop = () => {
