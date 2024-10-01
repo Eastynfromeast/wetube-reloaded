@@ -30,9 +30,15 @@ const handleDownload = async () => {
 	ffmpeg.writeFile(`${fileName}.webm`, await fetchFile(videoFile));
 	await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
 
+	const mp4File = await ffmpeg.readFile(`${fileName}.mp4`);
+
+	const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
+
+	const mp4Url = URL.createObjectURL(mp4Blob);
+
 	const videoLink = document.createElement("a");
-	videoLink.href = videoFile;
-	videoLink.download = `${fileName}.webm`;
+	videoLink.href = mp4Url;
+	videoLink.download = `${fileName}.mp4`;
 	document.body.appendChild(videoLink);
 	videoLink.click();
 	preview.loop = false;

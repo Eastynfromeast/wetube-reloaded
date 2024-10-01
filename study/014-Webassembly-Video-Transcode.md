@@ -56,3 +56,38 @@ ffmpeg.writeFile(`${fileName}.webm`, await fetchFile(videoFile));
 // run ffmpeg
 await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
 ```
+
+## 14.2 Download Transcoded Video
+
+- Read a mp4 file created by ffmpeg
+
+```
+	const mp4File = await ffmpeg.readFile(`${fileName}.mp4`);
+
+	console.log(mp4File); // Uint8Array(286313)
+	console.log("The buffer is ", mp4File.buffer); // ArrayBuffer
+```
+
+- Blob : a blob, which is a file-like object of immutable, raw data; they can be read as text or binary data, or converted into a ReadableStream so its methods can be used for processing the data.
+
+- Uint8Array : The Uint8Array typed array represents an array of 8-bit unsigned integers. The contents are initialized to 0 unless initialization data is explicitly provided. Once established, you can reference elements in the array using the object's methods, or using standard array index syntax (that is, using bracket notation).
+
+- ArrayBuffer : The ArrayBuffer object is used to represent a generic raw binary data buffer. It is an array of bytes, often referred to in other languages as a "byte array". You cannot directly manipulate the contents of an ArrayBuffer; instead, you create one of the typed array objects or a DataView object which represents the buffer in a specific format, and use that to read and write the contents of the buffer.
+
+- We need to create a blob
+
+  - We can make a blob from an ArrayBuffer `mp4File.buffer`
+  - To get actual binary data, we need to use **buffer**
+
+    ```
+    	const mp4File = await ffmpeg.readFile(`${fileName}.mp4`);
+
+      // Create blob with mp4File.buffer
+      const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
+
+      // Create URL to make it downloadable
+      const mp4Url = URL.createObjectURL(mp4Blob);
+
+      videoLink.href = mp4Url;
+      videoLink.download = `${fileName}.mp4`;
+    ```
