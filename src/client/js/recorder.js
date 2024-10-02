@@ -28,19 +28,32 @@ const handleDownload = async () => {
 
 	// ffmpeg 세상에 file을 만들어줌!
 	ffmpeg.writeFile(`${fileName}.webm`, await fetchFile(videoFile));
+
 	await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
 
+	await ffmpeg.exec(["-i", `${fileName}.webm`, "-ss", "00:00:01", "-frames:v", "1", `thumbnail_${fileName}.jpg`]);
+
 	const mp4File = await ffmpeg.readFile(`${fileName}.mp4`);
+	const thumbFile = await ffmpeg.readFile(`thumbnail_${fileName}.jpg`);
 
 	const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
+	const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
 
 	const mp4Url = URL.createObjectURL(mp4Blob);
+	const thumbUrl = URL.createObjectURL(thumbBlob);
 
 	const videoLink = document.createElement("a");
 	videoLink.href = mp4Url;
 	videoLink.download = `${fileName}.mp4`;
 	document.body.appendChild(videoLink);
 	videoLink.click();
+
+	const thumbLink = document.createElement("a");
+	thumbLink.href = thumbUrl;
+	thumbLink.download = `thumbnail_${fileName}.jpg`;
+	document.body.appendChild(thumbLink);
+	thumbLink.click();
+
 	preview.loop = false;
 	preview.pause();
 };
@@ -75,7 +88,7 @@ const handleStart = () => {
 const init = async () => {
 	try {
 		stream = await navigator.mediaDevices.getUserMedia({
-			audio: false,
+			audio: true,
 			video: { width: 270, height: 480 },
 		});
 		preview.srcObject = stream;

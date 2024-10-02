@@ -6,7 +6,7 @@
 
 ## Tasks
 
-Now it's time for our graduation project, we are goint to use everything we know! We have only one task for this week: Make a Wetube Clone These are the features that the clone needs to have:
+Now it's time for our graduation project, we are going to use everything we know! We have only one task for this week: Make a Wetube Clone These are the features that the clone needs to have:
 
 ## Requirements
 

@@ -91,3 +91,13 @@ await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
       videoLink.href = mp4Url;
       videoLink.download = `${fileName}.mp4`;
     ```
+
+## 14.3 Thumbnail
+
+- How to get thumbnail with FFmpeg
+  - [ref from offical website](https://ffmpeg.org/ffmpeg.html#Video-Options)
+
+```
+	await ffmpeg.exec(["-i", `${fileName}.webm`, "-ss", "00:00:01", "-frames:v", "1", `thumbnail_${fileName}.jpg`]);
+// Output #0, image2, to 'thumbnail_videoFile_241002_0.jpg':
+```
