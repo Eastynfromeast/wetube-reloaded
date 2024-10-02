@@ -70,7 +70,9 @@ await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
 
 - Blob : a blob, which is a file-like object of immutable, raw data; they can be read as text or binary data, or converted into a ReadableStream so its methods can be used for processing the data.
 
-- Uint8Array : The Uint8Array typed array represents an array of 8-bit unsigned integers. The contents are initialized to 0 unless initialization data is explicitly provided. Once established, you can reference elements in the array using the object's methods, or using standard array index syntax (that is, using bracket notation).
+- Uint8Array ("**U**nsigned **int**eger")
+
+  - The Uint8Array typed array represents an array of 8-bit unsigned integers. The contents are initialized to 0 unless initialization data is explicitly provided. Once established, you can reference elements in the array using the object's methods, or using standard array index syntax (that is, using bracket notation).
 
 - ArrayBuffer : The ArrayBuffer object is used to represent a generic raw binary data buffer. It is an array of bytes, often referred to in other languages as a "byte array". You cannot directly manipulate the contents of an ArrayBuffer; instead, you create one of the typed array objects or a DataView object which represents the buffer in a specific format, and use that to read and write the contents of the buffer.
 
@@ -100,4 +102,20 @@ await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
 ```
 	await ffmpeg.exec(["-i", `${fileName}.webm`, "-ss", "00:00:01", "-frames:v", "1", `thumbnail_${fileName}.jpg`]);
 // Output #0, image2, to 'thumbnail_videoFile_241002_0.jpg':
+```
+
+- Unlink the files not to maintain the files on the browser memeory
+
+```
+	const deleteSourceFile = await ffmpeg.deleteFile(`${fileName}.webm`);
+	const deleteMp4File = await ffmpeg.deleteFile(`${fileName}.mp4`);
+	const deleteThumbnail = await ffmpeg.deleteFile(`thumbnail_${fileName}.jpg`);
+
+  // true, true, true will come out if it works correctly
+	console.log(deleteSourceFile, deleteMp4File, deleteThumbnail);
+
+  // delete the object URLs we created
+  URL.revokeObjectURL(mp4Url);
+	URL.revokeObjectURL(thumbUrl);
+	URL.revokeObjectURL(videoFile);
 ```

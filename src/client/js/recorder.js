@@ -56,6 +56,16 @@ const handleDownload = async () => {
 
 	preview.loop = false;
 	preview.pause();
+
+	const deleteSourceFile = await ffmpeg.deleteFile(`${fileName}.webm`);
+	const deleteMp4File = await ffmpeg.deleteFile(`${fileName}.mp4`);
+	const deleteThumbnail = await ffmpeg.deleteFile(`thumbnail_${fileName}.jpg`);
+
+	console.log(deleteSourceFile, deleteMp4File, deleteThumbnail);
+
+	URL.revokeObjectURL(mp4Url);
+	URL.revokeObjectURL(thumbUrl);
+	URL.revokeObjectURL(videoFile);
 };
 
 const handleStop = () => {
@@ -73,7 +83,6 @@ const handleStart = () => {
 	recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
 	// console.log(recorder); recorder.state == "inactive"
 	recorder.ondataavailable = event => {
-		console.log("Get the video!", event.data);
 		videoFile = URL.createObjectURL(event.data);
 		preview.srcObject = null;
 		preview.src = videoFile;
@@ -88,7 +97,7 @@ const handleStart = () => {
 const init = async () => {
 	try {
 		stream = await navigator.mediaDevices.getUserMedia({
-			audio: true,
+			audio: false,
 			video: { width: 270, height: 480 },
 		});
 		preview.srcObject = stream;
