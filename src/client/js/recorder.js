@@ -1,40 +1,58 @@
 import { fetchFile } from "@ffmpeg/util";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 
-const startBtn = document.getElementById("startBtn");
+const actionBtn = document.getElementById("actionBtn");
 const preview = document.getElementById("preview");
 
 let stream;
 let recorder;
 let videoFile;
-let fileName;
+let formattedFileName;
 let fileNum = 0;
 
 const FILE_PREFIX = "videoFile_";
 
 const formatFileName = () => {
 	const datePart = new Date().toISOString().substring(2, 10).replaceAll("-", "");
-	fileName = FILE_PREFIX + datePart + "_" + fileNum;
+	formattedFileName = FILE_PREFIX + datePart + "_" + fileNum;
 	fileNum += 1;
-	return fileName;
+	return formattedFileName;
+};
+
+const downloadFile = (fileUrl, fileName) => {
+	const fileLink = document.createElement("a");
+	fileLink.href = fileUrl;
+	fileLink.download = fileName;
+	document.body.appendChild(fileLink);
+	fileLink.click();
 };
 
 const handleDownload = async () => {
+	actionBtn.removeEventListener("click", handleDownload);
+	actionBtn.innerText = "Transcoding...";
+	actionBtn.disabled = true;
+
 	formatFileName();
+
+	let files = {
+		input: `${formattedFileName}.webm`,
+		output: `${formattedFileName}.mp4`,
+		thumb: `thumbnail_${formattedFileName}.jpg`,
+	};
 
 	const ffmpeg = new FFmpeg();
 	await ffmpeg.load();
 	ffmpeg.on("log", ({ type, message }) => console.log(message));
 
 	// ffmpeg 세상에 file을 만들어줌!
-	ffmpeg.writeFile(`${fileName}.webm`, await fetchFile(videoFile));
+	ffmpeg.writeFile(files.input, await fetchFile(videoFile));
 
-	await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
+	await ffmpeg.exec(["-i", files.input, "-r", "60", files.output]);
 
-	await ffmpeg.exec(["-i", `${fileName}.webm`, "-ss", "00:00:01", "-frames:v", "1", `thumbnail_${fileName}.jpg`]);
+	await ffmpeg.exec(["-i", files.input, "-ss", "00:00:01", "-frames:v", "1", files.thumb]);
 
-	const mp4File = await ffmpeg.readFile(`${fileName}.mp4`);
-	const thumbFile = await ffmpeg.readFile(`thumbnail_${fileName}.jpg`);
+	const mp4File = await ffmpeg.readFile(files.output);
+	const thumbFile = await ffmpeg.readFile(files.thumb);
 
 	const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
 	const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
@@ -42,43 +60,38 @@ const handleDownload = async () => {
 	const mp4Url = URL.createObjectURL(mp4Blob);
 	const thumbUrl = URL.createObjectURL(thumbBlob);
 
-	const videoLink = document.createElement("a");
-	videoLink.href = mp4Url;
-	videoLink.download = `${fileName}.mp4`;
-	document.body.appendChild(videoLink);
-	videoLink.click();
-
-	const thumbLink = document.createElement("a");
-	thumbLink.href = thumbUrl;
-	thumbLink.download = `thumbnail_${fileName}.jpg`;
-	document.body.appendChild(thumbLink);
-	thumbLink.click();
+	downloadFile(mp4Url, files.output);
+	downloadFile(thumbUrl, files.thumb);
 
 	preview.loop = false;
 	preview.pause();
 
-	const deleteSourceFile = await ffmpeg.deleteFile(`${fileName}.webm`);
-	const deleteMp4File = await ffmpeg.deleteFile(`${fileName}.mp4`);
-	const deleteThumbnail = await ffmpeg.deleteFile(`thumbnail_${fileName}.jpg`);
+	const deleteSourceFile = await ffmpeg.deleteFile(files.input);
+	const deleteMp4File = await ffmpeg.deleteFile(files.output);
+	const deleteThumbnail = await ffmpeg.deleteFile(files.thumb);
 
 	console.log(deleteSourceFile, deleteMp4File, deleteThumbnail);
 
 	URL.revokeObjectURL(mp4Url);
 	URL.revokeObjectURL(thumbUrl);
 	URL.revokeObjectURL(videoFile);
+
+	actionBtn.disabled = false;
+	actionBtn.innerText = "Record Again";
+	actionBtn.addEventListener("click", handleStart);
 };
 
 const handleStop = () => {
-	startBtn.innerText = "Download Recording";
-	startBtn.removeEventListener("click", handleStop);
-	startBtn.addEventListener("click", handleDownload);
+	actionBtn.innerText = "Download Recording";
+	actionBtn.removeEventListener("click", handleStop);
+	actionBtn.addEventListener("click", handleDownload);
 	recorder.stop();
 };
 
 const handleStart = () => {
-	startBtn.innerText = "Stop recording";
-	startBtn.removeEventListener("click", handleStart);
-	startBtn.addEventListener("click", handleStop);
+	actionBtn.innerText = "Stop recording";
+	actionBtn.removeEventListener("click", handleStart);
+	actionBtn.addEventListener("click", handleStop);
 
 	recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
 	// console.log(recorder); recorder.state == "inactive"
@@ -107,4 +120,4 @@ const init = async () => {
 
 init();
 
-startBtn.addEventListener("click", handleStart);
+actionBtn.addEventListener("click", handleStart);

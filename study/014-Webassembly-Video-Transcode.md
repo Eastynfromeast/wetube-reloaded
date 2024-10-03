@@ -119,3 +119,5 @@ await ffmpeg.exec(["-i", `${fileName}.webm`, "-r", "60", `${fileName}.mp4`]);
 	URL.revokeObjectURL(thumbUrl);
 	URL.revokeObjectURL(videoFile);
 ```
+
+## 14.5-6 Thumbnail Upload
