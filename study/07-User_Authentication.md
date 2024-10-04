@@ -117,3 +117,37 @@
     ```
 
 ## 7.12 Mongo Store
+
+### Cookie !== session
+
+- Cookie is the way of transporting, sending and receiving the information
+
+  - and it happened automatically
+
+- Session IDs are saved on the COOKIE
+
+  - Cookies are used to deliver the session ID
+  - The backend keeps the record of all the sessions ever created
+
+- The cookie,which contains the session ID, is on the browser. The session ID is on the backend
+
+  - http is **stateless** === Connection is not forever there! It can be easily disconnecte
+  - when there is POST request, it will be disconnected
+  - There is no connection alive between the browser and the backend
+  - => So we give the **session ID**
+
+- Session Store is where we store the sessions
+  - When the server is restarted, the session is restarted too!
+
+```
+app.use(
+	session({
+		secret: "Wetube reloaded",
+		resave: true,
+		saveUninitialized: true,
+	})
+);
+```
+
+- Session data is not saved in the cookie itself, just the session ID. Session data is stored server-side. [express-session](https://www.npmjs.com/package/express-session)
+- The default server-side session storage, MemoryStore, is purposely not designed for a production environment. => We need to use **session store**

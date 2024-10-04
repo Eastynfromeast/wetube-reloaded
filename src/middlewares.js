@@ -1,6 +1,7 @@
 import multer from "multer";
 
 export const localsMiddlware = (req, res, next) => {
+	//console.log(req.sessionID);
 	res.locals.siteName = "Nultube";
 	res.locals.loggedIn = Boolean(req.session.loggedIn);
 	res.locals.loggedInUser = req.session.user || {};
