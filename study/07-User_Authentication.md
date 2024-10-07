@@ -151,3 +151,81 @@ app.use(
 
 - Session data is not saved in the cookie itself, just the session ID. Session data is stored server-side. [express-session](https://www.npmjs.com/package/express-session)
 - The default server-side session storage, MemoryStore, is purposely not designed for a production environment. => We need to use **session store**
+
+### [connect-mongo](https://www.npmjs.com/package/connect-mongo)
+
+MongoDB session store for Connect and Express written in Typescript.
+
+- How the session is created? When the browser visits our backend!
+- How to save the sessions on our database, not in the server memory with `connect-mongo`
+
+```
+app.use(
+	session({
+		//...
+		store: MongoStore.create({ mongoUrl: URL }),
+	})
+);
+```
+
+## 7.13 Uninitialized Sessions
+
+It is better to save the sessions that belongs to only logged in users
+=> I am not going to give the cookies to everyone
+
+- "saveUninitialized" === when the session is new but not modified
+
+  - choosing `false` is useful for implementing login sessions, reducing server storage usage, or complying with laws that require permission before setting a cookie
+  - `saveUninitialized: false`는 백엔드가 로그인한 유저에게만 쿠키를 주는 것으로 설정했다는 것
+  - 언제 session이 초기화 되는가? user가 로그인 했을 때 (우리 코드에서는)
+
+- resave === 모든 리퀘스트마다 세션의 변경사항이 있든 없든 세션을 다시 저장
+
+```
+app.use(
+	session({
+		secret: "XXX",
+		resave: false,
+		saveUninitialized: false,
+		store: MongoStore.create({ mongoUrl: URL }),
+	})
+);
+```
+
+## 7.14 Expiration and Secrets
+
+### cookie의 구성 요소?
+
+- Secrets: a string of text that we use to sign the cookie
+  - to check whether our backend gave the cookie or not (to avoid session hijack)
+- Domain: 브라우저는 도메인에 따라 쿠키를 저장 => 쿠키가 적용되어야 하는 호스트 지정
+- Expires : HTTP 타임스템프로 기록된 쿠키의 최대 생존 시간(수명).
+- Max-Age : 쿠키가 만료될 때 까지의 시간 (1/1000초 === 밀리세컨드)
+
+```
+cookie: {
+  maxAge: 20000,
+},
+```
+
+### 7.15 Environment Variables
+
+- How to use .env string
+
+  1. create .env file
+  2. add .env file on .gitignore : we don't want to upload it on our github
+  3. replace any secret strings with `process.env.{VARIABLE_NAME}`
+
+  - `process.env` means "enviroment of NodeJS process"
+
+- [dotenv](https://www.npmjs.com/package/dotenv)
+  Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env.
+- It should be used as early as possible, because we need to load env asap
+
+```
+// require를 사용하면 사용하려는 모든 파일의 가장 위에 적어줘야 함 -> 귀찮음
+require("dotenv").config();
+
+// 가장 먼저 로드되는 init.js 의 최상단에 적어주면 모든 파일에서 사용 가능해진다! (권장됨)
+import "dotenv/config"
+```
