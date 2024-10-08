@@ -208,7 +208,7 @@ cookie: {
 },
 ```
 
-### 7.15 Environment Variables
+## 7.15 Environment Variables
 
 - How to use .env string
 
@@ -229,3 +229,42 @@ require("dotenv").config();
 // 가장 먼저 로드되는 init.js 의 최상단에 적어주면 모든 파일에서 사용 가능해진다! (권장됨)
 import "dotenv/config"
 ```
+
+## 7.16-21 Github Login
+
+[Github Docs](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps)
+
+- The web application flow to authorize users for your app is:
+
+  1. Users are redirected to request their GitHub identity
+
+  - 유저를 깃허브로 보냄
+
+  ```
+  GET https://github.com/login/oauth/authorize
+  ```
+
+  2. Users are redirected back to your site by GitHub
+
+  - Github이 유저를 토큰과 함께 redirect 시킴
+
+  3. Your app accesses the API with the user's access token
+
+  - 토큰으로 우리는 유저 정보에 접근 가능하게 됨
+  - This access token will expire very quickly
+
+- How to create a github OAuth app and use it
+
+  1. Go to your github "Settings"
+  2. Go to "Developer Settings"
+  3. Click "OAuth Apps"
+  4. Create an OAuth app
+  5. Create an <a/> tag and set href attribute as `"https://github.com/login/oauth/authorize?client_id={client_id}"`
+
+- Github OAuth parameters
+  - scope : how much you want to know about the user
+  - authorized_signup
+
+### OAuth
+
+- OAuth? 다양한 플랫폼의 특정한 사용자 데이터에 접근하기 위해 제 3자 클라이언트(우리의 서비스)가 사용자의 접근 권한을 위임받을 수 있는(Delegated Authorization) 표준 프로토콜이
