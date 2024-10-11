@@ -261,10 +261,22 @@ import "dotenv/config"
   4. Create an OAuth app
   5. Create an <a/> tag and set href attribute as `"https://github.com/login/oauth/authorize?client_id={client_id}"`
 
+- OAuth? 다양한 플랫폼의 특정한 사용자 데이터에 접근하기 위해 제 3자 클라이언트(우리의 서비스)가 사용자의 접근 권한을 위임받을 수 있는(Delegated Authorization) 표준 프로토콜
+
 - Github OAuth parameters
+
   - scope : how much you want to know about the user
+    - A space-delimited list of scopes.
+    - [github docs](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps)
+    - Scopes let you specify exactly what type of access you need. Scopes limit access for OAuth tokens. They do not grant any additional permission beyond that which the user already has.
+    ```
+    https://github.com/login/oauth/authorize?client_id={client_id}&allow_signup=false&scope=read:user%20user:email
+    ```
+    -`scope=` 뒤에 추가되는 내용에 따라 요청하는 정보의 범위가 달라진다! === 모두 URL에 기반함
+    - scope를 추가하려면 `%20`(스페이스)를 추가 후 원하는 scope을 적어주면 됨!
   - authorized_signup
 
-### OAuth
-
-- OAuth? 다양한 플랫폼의 특정한 사용자 데이터에 접근하기 위해 제 3자 클라이언트(우리의 서비스)가 사용자의 접근 권한을 위임받을 수 있는(Delegated Authorization) 표준 프로토콜이
+  - `new URLSearchParams()`
+    ```
+    new URLSearchParams(config).toString() // config object를 url의 search 형식으로 탈바꿈 시켜줌
+    ```
